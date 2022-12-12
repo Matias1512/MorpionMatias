@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "787122317306",
+    "firebase_url": "https://morpion-568a1-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "morpion-568a1",
+    "storage_bucket": "morpion-568a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787122317306:android:2b500c52daf1ccae416643",
+        "android_client_info": {
+          "package_name": "com.example.morpion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787122317306-ba72qgef22844aog15si67829kn6m3sa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0hjfopUGyWGSD9ryrr3gQg_FfOcjGsj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787122317306-ba72qgef22844aog15si67829kn6m3sa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
