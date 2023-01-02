@@ -13,7 +13,7 @@ public class Case extends View {
         super(context, attrs);
     }
     public int couleur = Color.WHITE;
-    public String joueur = "Croix";
+    public symbole joueur = null;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -21,18 +21,14 @@ public class Case extends View {
         int largeur = getMeasuredWidth();
         Paint paint = new Paint();
         paint.setColor(couleur);
-        if (joueur == "Croix") {
+        if (joueur == joueur.CROIX) {
             paint.setStyle(Paint.Style.FILL);
             canvas.drawLine(0,0,hauteur,largeur, paint);
             canvas.drawLine(0,largeur,hauteur,0, paint);
         }
-        if (joueur == "Cercle") {
+        if (joueur == joueur.CERCLE) {
             paint.setStyle(Paint.Style.FILL);
-            canvas.drawLine(0,0,hauteur,largeur, paint);
-            canvas.drawLine(0,largeur,hauteur,0, paint);
+            canvas.drawCircle(largeur/2, hauteur/2, largeur/2, paint);
         }
-
-        //paint.setStyle(Paint.Style.FILL);
-        //canvas.drawCircle(largeur/2, hauteur/2, largeur/2, paint);
     }
 }

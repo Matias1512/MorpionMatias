@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -73,11 +72,92 @@ public class MorpionActivity extends AppCompatActivity {
             }
         });
 
-        Case caseUnUn = findViewById(R.id.cercle);
-        caseUnUn.setOnClickListener(new View.OnClickListener() {
+        Case case1 = findViewById(R.id.case1);
+        Case case2 = findViewById(R.id.case2);
+        Case case3 = findViewById(R.id.case3);
+        Case case4 = findViewById(R.id.case4);
+        Case case5 = findViewById(R.id.case5);
+        Case case6 = findViewById(R.id.case6);
+        Case case7 = findViewById(R.id.case7);
+        Case case8 = findViewById(R.id.case8);
+        Case case9 = findViewById(R.id.case9);
+        case1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLUE;
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
+                view.invalidate();
+                myRef.setValue("ça marche");
+            }
+        });
+        case9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLACK;
+                ((Case)view).joueur = joueur;
                 view.invalidate();
                 myRef.setValue("ça marche");
             }

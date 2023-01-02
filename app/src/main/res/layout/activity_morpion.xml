@@ -37,11 +37,81 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.morpion.Case
-        android:id="@+id/cercle"
+        android:id="@+id/case1"
         android:layout_width="101dp"
         android:layout_height="102dp"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case2"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case3"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case4"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case5"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case6"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case7"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case8"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.morpion.Case
+        android:id="@+id/case9"
+        android:layout_width="101dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
