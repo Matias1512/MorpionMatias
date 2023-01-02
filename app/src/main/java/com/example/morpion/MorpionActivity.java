@@ -1,5 +1,6 @@
 package com.example.morpion;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +48,16 @@ public class MorpionActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("APPX", "Failed to read value.", error.toException());
+            }
+        });
+
+        Case caseUnUn = findViewById(R.id.cercle);
+        caseUnUn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLUE;
+                view.invalidate();
+                myRef.setValue("ça marche");
             }
         });
     }
