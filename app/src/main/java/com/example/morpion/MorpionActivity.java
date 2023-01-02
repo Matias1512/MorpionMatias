@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MorpionActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,11 @@ public class MorpionActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editText);
         // bouton test
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Case1_1");
+        DatabaseReference Cercle = database.getReference("Cercle");
+        DatabaseReference Croix = database.getReference("Croix");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,14 +38,6 @@ public class MorpionActivity extends AppCompatActivity {
                 myRef.setValue(editText.getText().toString());
             }
         });
-
-
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Case1_1");
-        DatabaseReference Cercle = database.getReference("Cercle");
-        DatabaseReference Croix = database.getReference("Croix");
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
