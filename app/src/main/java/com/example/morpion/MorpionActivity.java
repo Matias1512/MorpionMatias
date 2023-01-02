@@ -17,8 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MorpionActivity extends AppCompatActivity {
+<<<<<<< HEAD
     public symbole joueur;
     public Boolean croix,cercle;
+=======
+>>>>>>> 92481b8c0efaef9f6c3436176c97bfd50e46f3f1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,11 @@ public class MorpionActivity extends AppCompatActivity {
         final EditText editText = findViewById(R.id.editText);
         editText.setText(joueur.toString());
         // bouton test
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Case1_1");
+        DatabaseReference Cercle = database.getReference("Cercle");
+        DatabaseReference Croix = database.getReference("Croix");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +82,7 @@ public class MorpionActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
 
 
 
@@ -81,6 +90,8 @@ public class MorpionActivity extends AppCompatActivity {
 
 
 
+=======
+>>>>>>> 92481b8c0efaef9f6c3436176c97bfd50e46f3f1
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

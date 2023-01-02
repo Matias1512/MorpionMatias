@@ -19,19 +19,63 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Boolean cercle,croix;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference cercle = database.getReference("Cercle");
-        DatabaseReference Croix = database.getReference("Croix");
+
+        DatabaseReference cercleRef = database.getReference("Cercle");
+        DatabaseReference croixRef = database.getReference("Croix");
+
+        cercleRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Boolean value = dataSnapshot.getValue(Boolean.class);
+                Log.d("APPX", "Value is: " + value);
+                cercle = value;
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("APPX", "Failed to read value.", error.toException());
+            }
+        });
+        croixRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Boolean value = dataSnapshot.getValue(Boolean.class);
+                Log.d("APPX", "Value is: " + value);
+                croix = value;
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("APPX", "Failed to read value.", error.toException());
+            }
+        });
 
         Button playButton = findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchActivities();
+                if (cercle && croix) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("Partie déjà commencer trop de joueur")
+                            .setTitle("Attention")
+                            .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
+                }
+                else {switchActivities();}
+
             }
         });
     }
