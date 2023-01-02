@@ -17,12 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MorpionActivity extends AppCompatActivity {
-<<<<<<< HEAD
     public symbole joueur;
     public Boolean croix,cercle;
-=======
->>>>>>> 92481b8c0efaef9f6c3436176c97bfd50e46f3f1
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,18 +53,13 @@ public class MorpionActivity extends AppCompatActivity {
                 Log.w("APPX", "Failed to read value.", error.toException());
             }
         });
-        if(croix=false){
-            joueur = joueur.CROIX;
-        }
-        else{
-            joueur = joueur.CERCLE;
-        }
+        joueur = joueur.CROIX;
+
 
         Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editText);
         editText.setText(joueur.toString());
         // bouton test
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Case1_1");
         DatabaseReference Cercle = database.getReference("Cercle");
         DatabaseReference Croix = database.getReference("Croix");
@@ -81,17 +72,6 @@ public class MorpionActivity extends AppCompatActivity {
                 //myRef.setValue(editText.getText().toString());
             }
         });
-
-<<<<<<< HEAD
-
-
-
-        DatabaseReference myRef = database.getReference("Case1_1");
-
-
-
-=======
->>>>>>> 92481b8c0efaef9f6c3436176c97bfd50e46f3f1
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
