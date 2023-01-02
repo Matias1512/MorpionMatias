@@ -1,5 +1,6 @@
 package com.example.morpion;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,17 +23,23 @@ public class MorpionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_morpion);
         Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editText);
+        // bouton test
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("message");
+                DatabaseReference myRef = database.getReference("Case1_1");
                 myRef.setValue(editText.getText().toString());
             }
         });
 
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("Case1_1");
+        DatabaseReference Cercle = database.getReference("Cercle");
+        DatabaseReference Croix = database.getReference("Croix");
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -47,6 +54,16 @@ public class MorpionActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("APPX", "Failed to read value.", error.toException());
+            }
+        });
+
+        Case caseUnUn = findViewById(R.id.cercle);
+        caseUnUn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Case)view).couleur = Color.BLUE;
+                view.invalidate();
+                myRef.setValue("ça marche");
             }
         });
     }
