@@ -17,22 +17,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MorpionActivity extends AppCompatActivity {
-    public symbole joueur;
-    public Boolean croix,cercle;
+    public symbole joueur = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morpion);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference CercleDataRef = database.getReference("Cercle");
-        DatabaseReference CroixDataRef = database.getReference("Croix");
-
+        final EditText editText = findViewById(R.id.editText);
         CercleDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Boolean value = dataSnapshot.getValue(Boolean.class);
                 Log.d("APPX", "Value is: " + value);
-                cercle=value;
+                if(joueur == null){
+                    if(value){
+                        joueur = joueur.CROIX;
+                        editText.setText(joueur.CROIX.toString());
+                    } else {
+                        joueur = joueur.CERCLE;
+                        editText.setText(joueur.CERCLE.toString());
+                    }
+                }
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -40,30 +46,9 @@ public class MorpionActivity extends AppCompatActivity {
                 Log.w("APPX", "Failed to read value.", error.toException());
             }
         });
-        CroixDataRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Boolean value = dataSnapshot.getValue(Boolean.class);
-                Log.d("APPX", "Value is: " + value);
-                croix=value;
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("APPX", "Failed to read value.", error.toException());
-            }
-        });
-        joueur = joueur.CROIX;
-
-
         Button button = findViewById(R.id.button);
-        final EditText editText = findViewById(R.id.editText);
-        editText.setText(joueur.toString());
         // bouton test
         DatabaseReference myRef = database.getReference("Case1_1");
-        DatabaseReference Cercle = database.getReference("Cercle");
-        DatabaseReference Croix = database.getReference("Croix");
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +79,7 @@ public class MorpionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ((Case)view).couleur = Color.BLUE;
                 view.invalidate();
-                myRef.setValue(joueur);
+                myRef.setValue("ça marche");
             }
         });
     }
