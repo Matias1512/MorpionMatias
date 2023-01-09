@@ -20,22 +20,22 @@ import java.util.Objects;
 
 public class MorpionActivity extends AppCompatActivity {
     public symbole joueur = null;
+    public boolean monTour;
 
-    private void setCase(DatabaseReference caseDataRef, Case c) {
+    private void setCase(DatabaseReference caseDataRef, Case c, DatabaseReference tourRef) {
         caseDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
-                c.couleur = Color.BLACK;
-                if (value.equals("CROIX")){
-                    c.joueur = symbole.CROIX;
-                } else if (value.equals("CERCLE")){
-                    c.joueur = symbole.CERCLE;
-                } else {
-                    c.joueur = symbole.VIDE;
-                }
-                c.invalidate();
-                Log.w("APPX", "LA CASE "+value);
+                    c.couleur = Color.BLACK;
+                    if (value.equals("CROIX")){
+                        c.joueur = symbole.CROIX;
+                    } else if (value.equals("CERCLE")){
+                        c.joueur = symbole.CERCLE;
+                    } else {
+                        c.joueur = symbole.VIDE;
+                    }
+                    c.invalidate();
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -46,7 +46,14 @@ public class MorpionActivity extends AppCompatActivity {
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                caseDataRef.setValue(joueur.toString());
+                if(monTour && ((Case)view).joueur.equals(symbole.VIDE)){
+                    caseDataRef.setValue(joueur.toString());
+                    if(joueur.equals(symbole.CROIX)){
+                        tourRef.setValue("CERCLE");
+                    } else {
+                        tourRef.setValue("CROIX");
+                    }
+                }
             }
         });
     }
@@ -83,7 +90,25 @@ public class MorpionActivity extends AppCompatActivity {
         DatabaseReference case8DataRef = database.getReference("Case8");
         DatabaseReference case9DataRef = database.getReference("Case9");
 
-        DatabaseReference[] caseRefArray = {case1DataRef, case2DataRef, case3DataRef, case4DataRef, case5DataRef, case6DataRef, case7DataRef, case8DataRef, case9DataRef};
+        DatabaseReference tourRef = database.getReference("Tour");
+
+        //definir le tour
+        tourRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                if(value.equals(joueur.toString())){
+                    monTour = true;
+                } else {
+                    monTour = false;
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w("APPX", "Failed to read value.", error.toException());
+            }
+        });
 
         // attribution role (cercle ou croix) joueur
         CercleDataRef.addValueEventListener(new ValueEventListener() {
@@ -111,14 +136,15 @@ public class MorpionActivity extends AppCompatActivity {
             }
         });
 
-        setCase(case1DataRef, case1);
-        setCase(case2DataRef, case2);
-        setCase(case3DataRef, case3);
-        setCase(case4DataRef, case4);
-        setCase(case5DataRef, case5);
-        setCase(case6DataRef, case6);
-        setCase(case7DataRef, case7);
-        setCase(case8DataRef, case8);
-        setCase(case9DataRef, case9);
+        // initialisation tout les cases
+        setCase(case1DataRef, case1, tourRef);
+        setCase(case2DataRef, case2, tourRef);
+        setCase(case3DataRef, case3, tourRef);
+        setCase(case4DataRef, case4, tourRef);
+        setCase(case5DataRef, case5, tourRef);
+        setCase(case6DataRef, case6, tourRef);
+        setCase(case7DataRef, case7, tourRef);
+        setCase(case8DataRef, case8, tourRef);
+        setCase(case9DataRef, case9, tourRef);
     }
 }
