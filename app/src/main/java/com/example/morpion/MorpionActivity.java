@@ -1,5 +1,6 @@
 package com.example.morpion;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,37 @@ import java.util.Objects;
 public class MorpionActivity extends AppCompatActivity {
     public symbole joueur = null;
     public String case1Attribution = null;
+
+    private void setCase(DatabaseReference caseDataRef, Case c) {
+        caseDataRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                c.couleur = Color.BLACK;
+                if (value.equals("CROIX")){
+                    c.joueur = symbole.CROIX;
+                } else if (value.equals("CERCLE")){
+                    c.joueur = symbole.CERCLE;
+                } else {
+                    c.joueur = symbole.VIDE;
+                }
+                c.invalidate();
+                Log.w("APPX", "LA CASE "+value);
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("APPX", "Failed to read value.", error.toException());
+            }
+        });
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                caseDataRef.setValue(joueur.toString());
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +71,20 @@ public class MorpionActivity extends AppCompatActivity {
         Case case7 = findViewById(R.id.case7);
         Case case8 = findViewById(R.id.case8);
         Case case9 = findViewById(R.id.case9);
-        // pour faire un boucle pour les cases
+
         Case[] caseArray = {case1, case2, case3, case4, case5, case6, case7, case8, case9};
 
         DatabaseReference case1DataRef = database.getReference("Case1");
+        DatabaseReference case2DataRef = database.getReference("Case2");
+        DatabaseReference case3DataRef = database.getReference("Case3");
+        DatabaseReference case4DataRef = database.getReference("Case4");
+        DatabaseReference case5DataRef = database.getReference("Case5");
+        DatabaseReference case6DataRef = database.getReference("Case6");
+        DatabaseReference case7DataRef = database.getReference("Case7");
+        DatabaseReference case8DataRef = database.getReference("Case8");
+        DatabaseReference case9DataRef = database.getReference("Case9");
+
+        DatabaseReference[] caseRefArray = {case1DataRef, case2DataRef, case3DataRef, case4DataRef, case5DataRef, case6DataRef, case7DataRef, case8DataRef, case9DataRef};
 
         // attribution role (cercle ou croix) joueur
         CercleDataRef.addValueEventListener(new ValueEventListener() {
@@ -70,98 +112,64 @@ public class MorpionActivity extends AppCompatActivity {
             }
         });
 
-        case1DataRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                case1.couleur = Color.BLACK;
-                if (value.equals("CROIX")){
-                    case1.joueur = symbole.CROIX;
-                } else if (value.equals("CERCLE")){
-                    case1.joueur = symbole.CERCLE;
-                } else {
-                    case1.joueur = symbole.VIDE;
-                }
-                case1.invalidate();
-                Log.w("APPX", "LA CASE "+value);
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("APPX", "Failed to read value.", error.toException());
-            }
-        });
+        setCase(case1DataRef, case1);
+        setCase(case2DataRef, case2);
+        setCase(case3DataRef, case3);
+        setCase(case4DataRef, case4);
+        setCase(case5DataRef, case5);
+        setCase(case6DataRef, case6);
+        setCase(case7DataRef, case7);
+        setCase(case8DataRef, case8);
+        setCase(case9DataRef, case9);
 
         //initialisation case
 
-        case1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case1DataRef.setValue(joueur.toString());
-            }
-        });
         case2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case2DataRef.setValue(joueur.toString());
             }
         });
         case3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case3DataRef.setValue(joueur.toString());
             }
         });
         case4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case4DataRef.setValue(joueur.toString());
             }
         });
         case5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case5DataRef.setValue(joueur.toString());
             }
         });
         case6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case6DataRef.setValue(joueur.toString());
             }
         });
         case7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case7DataRef.setValue(joueur.toString());
             }
         });
         case8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case8DataRef.setValue(joueur.toString());
             }
         });
         case9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Case)view).couleur = Color.BLACK;
-                ((Case)view).joueur = joueur;
-                view.invalidate();
+                case9DataRef.setValue(joueur.toString());
             }
         });
     }
