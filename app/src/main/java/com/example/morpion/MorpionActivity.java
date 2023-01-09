@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -66,7 +67,8 @@ public class MorpionActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference CercleDataRef = database.getReference("Cercle");
         DatabaseReference CroixDataRef = database.getReference("Croix");
-        final EditText editText = findViewById(R.id.editText);
+        final TextView afficheRole = findViewById(R.id.AfficheRole);
+        final TextView afficheTour = findViewById(R.id.AfficheTour);
 
         Case case1 = findViewById(R.id.case1);
         Case case2 = findViewById(R.id.case2);
@@ -102,6 +104,7 @@ public class MorpionActivity extends AppCompatActivity {
                 } else {
                     monTour = false;
                 }
+                afficheTour.setText("Au tour de : "+value);
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -119,11 +122,11 @@ public class MorpionActivity extends AppCompatActivity {
                 if(joueur == null){
                     if(value){
                         joueur = joueur.CROIX;
-                        editText.setText(joueur.CROIX.toString());
+                        afficheRole.setText(joueur.CROIX.toString());
                         CroixDataRef.setValue(true);
                     } else {
                         joueur = joueur.CERCLE;
-                        editText.setText(joueur.CERCLE.toString());
+                        afficheRole.setText(joueur.CERCLE.toString());
                         CercleDataRef.setValue(true);
                     }
                     Log.d("APPX", "Value is: " + value);
