@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -78,10 +79,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        Button switchMenuButton = findViewById(R.id.switchMenuButton);
+        switchMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                {switchMenucontextuel();}
+            }
+        });
     }
-
     private void switchActivities() {
         Intent switchActivityIntent = new Intent(this, MorpionActivity.class);
+        startActivity(switchActivityIntent);
+    }
+    private void switchMenucontextuel() {
+        Intent switchActivityIntent = new Intent(this, MenuContextuel.class);
         startActivity(switchActivityIntent);
     }
 

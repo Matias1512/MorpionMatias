@@ -29,6 +29,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
+        android:id="@+id/switchMenuButton"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:text="Menu Contextuel"
+        app:layout_constraintBottom_toTopOf="@+id/parametreButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.917" />
+
+    <Button
         android:id="@+id/parametreButton"
         android:layout_width="300dp"
         android:layout_height="70dp"
