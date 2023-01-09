@@ -20,7 +20,6 @@ import java.util.Objects;
 
 public class MorpionActivity extends AppCompatActivity {
     public symbole joueur = null;
-    public String case1Attribution = null;
 
     private void setCase(DatabaseReference caseDataRef, Case c) {
         caseDataRef.addValueEventListener(new ValueEventListener() {
@@ -121,56 +120,5 @@ public class MorpionActivity extends AppCompatActivity {
         setCase(case7DataRef, case7);
         setCase(case8DataRef, case8);
         setCase(case9DataRef, case9);
-
-        //initialisation case
-
-        case2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case2DataRef.setValue(joueur.toString());
-            }
-        });
-        case3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case3DataRef.setValue(joueur.toString());
-            }
-        });
-        case4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case4DataRef.setValue(joueur.toString());
-            }
-        });
-        case5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case5DataRef.setValue(joueur.toString());
-            }
-        });
-        case6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case6DataRef.setValue(joueur.toString());
-            }
-        });
-        case7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case7DataRef.setValue(joueur.toString());
-            }
-        });
-        case8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case8DataRef.setValue(joueur.toString());
-            }
-        });
-        case9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                case9DataRef.setValue(joueur.toString());
-            }
-        });
     }
 }
