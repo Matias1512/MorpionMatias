@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }).show();
                 }
-                else {switchActivities();}
-
+                else {switchMorpionActivity();}
             }
         });
         Button switchMenuButton = findViewById(R.id.switchMenuButton);
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void switchActivities() {
+    private void switchMorpionActivity() {
         Intent switchActivityIntent = new Intent(this, MorpionActivity.class);
         startActivity(switchActivityIntent);
     }
